@@ -2,8 +2,9 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Filter, X } from "lucide-react";
 import { useDebounce } from "@/lib/useDebounce"; // need to create this
+import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 
 const CATEGORIES = ["All", "Digital", "Gifts", "Create", "Studio", "Prints"];
@@ -22,6 +23,7 @@ export function ServiceFilters() {
 
   const [localSearch, setLocalSearch] = useState(searchParams.get("search") || "");
   const debouncedSearch = useDebounce(localSearch, 500);
+  const [isOpen, setIsOpen] = useState(false);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -43,8 +45,20 @@ export function ServiceFilters() {
   }, [debouncedSearch, pathname, router, createQueryString, searchParams]);
 
   return (
-    <div className="space-y-10 pr-6">
-      {/* Search */}
+    <>
+      {/* Mobile Toggle Button */}
+      <div className="md:hidden mb-6 flex justify-end">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex items-center gap-2 text-sm font-medium text-ink bg-sand/30 px-4 py-2 rounded-full hover:bg-sand/50 transition-colors"
+        >
+          <Filter className="h-4 w-4" />
+          {isOpen ? "Close Filters" : "Filters"}
+        </button>
+      </div>
+
+      <div className={cn("space-y-10 pr-6 md:block", isOpen ? "block" : "hidden")}>
+        {/* Search */}
       <div>
         <h3 className="text-[11px] font-medium tracking-widest text-stone-muted uppercase mb-4">Search</h3>
         <div className="relative">
@@ -135,6 +149,7 @@ export function ServiceFilters() {
           ))}
         </select>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
