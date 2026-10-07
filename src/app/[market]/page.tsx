@@ -13,7 +13,7 @@ export default async function MarketPage({ params }: { params: Promise<{ market:
   return (
     <div className="flex flex-col bg-paper">
       {/* Refined Hero Section */}
-      <section className="relative pt-24 pb-32 lg:pt-32 lg:pb-40 overflow-hidden">
+      <section className="relative pt-8 pb-24 lg:pt-12 lg:pb-32 overflow-hidden">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
             <div className="lg:col-span-6 xl:col-span-5 z-10">
