@@ -119,7 +119,7 @@ export function Header({ currentMarket }: { currentMarket: Market }) {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 top-20 z-40 bg-[#f9f8f6] md:hidden transition-transform duration-500 ease-in-out",
+          "fixed inset-0 top-20 z-40 bg-white md:hidden transition-transform duration-500 ease-in-out",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
