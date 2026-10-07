@@ -5,6 +5,8 @@ import { Market } from "@/config/markets";
 import { formatCurrency } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ShoppingBag } from "lucide-react";
+import Link from "next/link";
 
 export function Checkout({ market }: { market: Market }) {
   const [mounted, setMounted] = useState(false);
@@ -32,9 +34,20 @@ export function Checkout({ market }: { market: Market }) {
 
   if (marketItems.length === 0) {
     return (
-      <div className="text-center py-32 bg-sand/30 rounded-2xl">
-        <h2 className="text-2xl font-display font-medium text-ink mb-4">No items in checkout</h2>
-        <p className="text-stone-muted font-body font-light">Please add items to your cart before proceeding.</p>
+      <div className="flex flex-col items-center justify-center py-32 md:py-40 px-6 border border-sand/50 bg-sand/20 rounded-3xl max-w-3xl mx-auto text-center">
+        <div className="w-20 h-20 bg-paper rounded-full flex items-center justify-center shadow-sm mb-8">
+          <ShoppingBag className="h-8 w-8 text-stone-muted" strokeWidth={1} />
+        </div>
+        <h2 className="text-3xl md:text-4xl font-display font-medium text-ink mb-4 tracking-tight">Checkout is empty</h2>
+        <p className="text-lg text-stone-muted font-body font-light mb-10 max-w-md">
+          Please add items to your cart before proceeding with your order.
+        </p>
+        <Link
+          href={`/${market.id}/services`}
+          className="inline-flex items-center justify-center bg-ink px-8 py-4 rounded-full text-sm font-medium text-paper hover:bg-black/80 transition-all duration-300 shadow-sm hover:shadow-md"
+        >
+          Explore Services
+        </Link>
       </div>
     );
   }

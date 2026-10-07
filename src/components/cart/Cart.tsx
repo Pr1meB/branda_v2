@@ -5,7 +5,7 @@ import { Market } from "@/config/markets";
 import { formatCurrency } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Cart({ market }: { market: Market }) {
@@ -25,14 +25,19 @@ export function Cart({ market }: { market: Market }) {
 
   if (marketItems.length === 0) {
     return (
-      <div className="text-center py-32 brutal-border bg-sand">
-        <h2 className="text-3xl font-display font-bold text-ink mb-4">YOUR CART IS EMPTY</h2>
-        <p className="text-stone-muted font-body mb-8">Begin your creative journey by exploring our services.</p>
+      <div className="flex flex-col items-center justify-center py-32 md:py-40 px-6 border border-sand/50 bg-sand/20 rounded-3xl max-w-3xl mx-auto text-center">
+        <div className="w-20 h-20 bg-paper rounded-full flex items-center justify-center shadow-sm mb-8">
+          <ShoppingBag className="h-8 w-8 text-stone-muted" strokeWidth={1} />
+        </div>
+        <h2 className="text-3xl md:text-4xl font-display font-medium text-ink mb-4 tracking-tight">Your cart is empty</h2>
+        <p className="text-lg text-stone-muted font-body font-light mb-10 max-w-md">
+          Begin your creative journey by exploring our curated selection of premium branding services.
+        </p>
         <Link
           href={`/${market.id}/services`}
-          className="inline-flex items-center justify-center bg-ink px-8 py-4 text-sm font-display font-bold tracking-widest text-paper hover:bg-accent transition-colors"
+          className="inline-flex items-center justify-center bg-ink px-8 py-4 rounded-full text-sm font-medium text-paper hover:bg-black/80 transition-all duration-300 shadow-sm hover:shadow-md"
         >
-          BROWSE SERVICES
+          Explore Services
         </Link>
       </div>
     );
